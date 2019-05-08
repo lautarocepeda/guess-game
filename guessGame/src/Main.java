@@ -4,9 +4,17 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
 
-        RandomNumber generadorNuevo = new RandomNumber();
+        RandomNumber randomNumber = new RandomNumber();
 
-        System.out.println(generadorNuevo.create());
+        System.out.println(randomNumber.create());
+
+        Player Lautaro = new Player();
+
+
+        Lautaro.guessNumber();
+
+
+        System.out.println(Lautaro.getNumber());
 
     }
 
