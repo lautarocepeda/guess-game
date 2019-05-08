@@ -1,4 +1,3 @@
-import javax.naming.LimitExceededException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,13 +9,11 @@ public class RandomNumber {
 
     private Random generator = new Random();
 
-    // default values
-    private int maxDigit = 4;
-    private int maxValue = 10;
 
 
     // constructors
     public RandomNumber() {}
+
 
 
     /*
@@ -26,16 +23,16 @@ public class RandomNumber {
 
         int randomDigit;
 
-        for (int i = 0; i < this.maxDigit; i++) {
+        for (int i = 0; i < Setting.maxDigit; i++) {
 
             if (i == 0) {
                 // avoid number 0 in first digit
-                this.digits.add(generator.nextInt(this.maxValue - 1) + 1);
+                this.digits.add(generator.nextInt(Setting.RANDOM_MAX_VALUE - 1) + 1);
             }
 
 
             do {
-                randomDigit = this.generator.nextInt(this.maxValue);
+                randomDigit = this.generator.nextInt(Setting.RANDOM_MAX_VALUE);
             } while (this.digits.contains(randomDigit));
 
             this.digits.add(randomDigit);
@@ -52,27 +49,11 @@ public class RandomNumber {
 
         StringBuilder number = new StringBuilder();
 
-        for (int i = 0; i < this.maxDigit; i++) {
+        for (int i = 0; i < Setting.maxDigit; i++) {
             number.append(this.digits.get(i));
         }
 
         return Integer.parseInt(number.toString());
-    }
-
-
-    // setters
-    public void setMaxDigit(int maxDigit) throws LimitExceededException {
-        if (maxDigit < 1 || maxDigit > 9) {
-            throw new LimitExceededException("Rango aceptado: 1-9");
-        }
-
-        this.maxDigit = maxDigit;
-    }
-
-
-    // getters
-    public int getMaxDigit() {
-        return this.maxDigit;
     }
 
 
