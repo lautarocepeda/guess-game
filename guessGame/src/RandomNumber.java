@@ -19,11 +19,11 @@ public class RandomNumber {
     /*
      * Generate different random numbers, digit by digit and saves in array
      */
-    public int create() {
+    public String create() {
 
         int randomDigit;
 
-        for (int i = 0; i < Setting.maxDigit; i++) {
+        for (int i = 0; i < Setting.getMaxDigit(); i++) {
 
             if (i == 0) {
                 // avoid number 0 in first digit
@@ -45,15 +45,15 @@ public class RandomNumber {
     /*
     * Join all digits from array and return an only number
     */
-    private int joinDigitsFromArray() {
+    private String joinDigitsFromArray() {
 
         StringBuilder number = new StringBuilder();
 
-        for (int i = 0; i < Setting.maxDigit; i++) {
+        for (int i = 0; i < Setting.getMaxDigit(); i++) {
             number.append(this.digits.get(i));
         }
 
-        return Integer.parseInt(number.toString());
+        return number.toString();
     }
 
 
