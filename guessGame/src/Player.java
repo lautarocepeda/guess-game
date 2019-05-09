@@ -23,12 +23,12 @@ public class Player {
 
         do {
             try {
-                System.out.println("Ingresa un numero de " + Setting.getMaxDigit() + " digitos -> ");
+                System.out.println("Ingresa un numero de " + Setting.getMaxDigit() + " digitos distintos -> ");
 
                 this.number = scanner.next();
 
-
-                if (!this.number.matches("[0-9]*")) {
+                // CAMBIAR REGEX PARA QUE NO SE PUEDAN REPETIR LOS DIGITOS.
+                if (!this.number.matches("^[1-9]\\d*$+")) {
                     throw new NumberFormatException("El dato ingresado no es válido!");
                 } else if (this.number.length() != Setting.getMaxDigit()) {
                     throw new NumberFormatException("Debes ingresar un numero de " + Setting.getMaxDigit() + " digitos!");

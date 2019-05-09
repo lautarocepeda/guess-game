@@ -13,10 +13,20 @@ public class Main {
 
         // Adivinador
         Player lautaro = new Player(Category.DIVINER);
-        lautaro.humanGuessNumber();
 
-        System.out.println("Computadora Numero => " + computadora.getNumber());
-        System.out.println("Lautaro Numero => " + lautaro.getNumber());
+
+        // controller game
+        GameController gcontroller;
+
+        do {
+            lautaro.humanGuessNumber();
+
+            gcontroller = new GameController(computadora.getDigits(), lautaro.getDigits());
+
+        } while (!gcontroller.humanVsComputer());
+
+        System.out.println(computadora.getNumber());
+
     }
 
 
