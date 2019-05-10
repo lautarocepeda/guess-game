@@ -2,33 +2,73 @@ import java.util.ArrayList;
 
 public class Main {
 
+    public static GameController gameController;
+
+
+
     public static void main(String[] args) {
 
         // set max digit to guess number.
         Setting setting = Setting.getSingletonInstance(4);
 
+
+        //startThinkerComputer();
+
+        startThinkerHuman();
+    }
+
+
+
+    // useless
+    public static int factorial(int n) {
+        return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
+    }
+
+
+    // COMPUTADORA PIENSA NUMERO Y HUMANO ADIVINA
+    public static void startThinkerComputer() {
+
         // Pensador
-        Player computadora = new Player(Category.THINKER);
+        Player computadora = new Player();
         computadora.computerThinkNumber();
 
+
         // Adivinador
-        Player lautaro = new Player(Category.DIVINER);
+        Player lautaro = new Player();
 
-
-        // controller game
-        GameController gcontroller;
 
         do {
             lautaro.humanGuessNumber();
 
-            gcontroller = new GameController(computadora.getDigits(), lautaro.getDigits());
+            gameController = new GameController(computadora, lautaro);
 
-        } while (!gcontroller.humanVsComputer());
+        } while (!gameController.humanVsComputer());
 
         System.out.println(computadora.getNumber());
 
     }
 
+
+    // HUMANO PIENSA NUMERO Y COMPUTADORA ADIVINA
+    public static void startThinkerHuman() {
+
+        // Pensador
+        Player lautaro = new Player();
+        lautaro.humanGuessNumber();
+
+        // Adivinador
+        Player computadora = new Player();
+        computadora.computerThinkNumber();
+
+        do {
+
+
+            gameController = new GameController(lautaro, computadora);
+
+        } while(!gameController.computerVsHuman());
+
+
+    }
 
 
 

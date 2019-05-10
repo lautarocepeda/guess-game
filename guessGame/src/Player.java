@@ -9,9 +9,7 @@ public class Player {
 
 
     // constructors
-    public Player(Category type) {
-        this.type = type;
-    }
+    public Player() {}
 
 
 
@@ -27,9 +25,9 @@ public class Player {
 
                 this.number = scanner.next();
 
-                // CAMBIAR REGEX PARA QUE NO SE PUEDAN REPETIR LOS DIGITOS.
-                if (!this.number.matches("^[1-9]\\d*$+")) {
-                    throw new NumberFormatException("El dato ingresado no es válido!");
+
+                if (!this.number.matches("^(?!.*(\\d).*\\1)[1-9]\\d++$")) {
+                    throw new NumberFormatException("El dato ingresado no es válido! *Recuerda usar digitos distintos.");
                 } else if (this.number.length() != Setting.getMaxDigit()) {
                     throw new NumberFormatException("Debes ingresar un numero de " + Setting.getMaxDigit() + " digitos!");
                 }
@@ -65,16 +63,8 @@ public class Player {
         return this.number;
     }
 
-
-    public Category getType() {
-        return this.type;
+    public void setNumber(String number) {
+        this.number = number;
     }
-
-
-    public void setType(Category type) {
-        this.type = type;
-    }
-
-
 
 }
