@@ -8,13 +8,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // set max digit to guess number.
+        // set max digit to guess number. (1-9)
         Setting setting = Setting.getSingletonInstance(4);
 
 
         //startThinkerComputer();
 
         startThinkerHuman();
+
     }
 
 
@@ -58,11 +59,10 @@ public class Main {
 
         // Adivinador
         Player computadora = new Player();
-        computadora.computerThinkNumber();
 
         do {
 
-
+            computadora.computerThinkNumber();
             gameController = new GameController(lautaro, computadora);
 
         } while(!gameController.computerVsHuman());

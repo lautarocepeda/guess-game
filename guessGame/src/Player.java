@@ -45,6 +45,7 @@ public class Player {
     public void computerThinkNumber() {
         RandomNumber randomNumber = new RandomNumber();
         this.number = randomNumber.create();
+        System.out.println("COMPUTADOR ELIGIO -> " + this.number);
     }
 
 
