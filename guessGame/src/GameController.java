@@ -305,15 +305,4 @@ public class GameController {
 
         return false;
     }
-
-
-    public int calculateFactorial(int number) {
-        return (number == 1 || number == 0) ? 1 : number * calculateFactorial(number - 1);
-    }
-
-
-
-
-
-
 }
