@@ -16,6 +16,7 @@ public class Main {
 
         startThinkerHuman();
 
+
     }
 
 
@@ -66,6 +67,10 @@ public class Main {
             gameController = new GameController(lautaro, computadora);
 
         } while(!gameController.computerVsHuman());
+
+
+        System.out.println("PENSADOR => " + lautaro.getNumber());
+        System.out.println("COMPUTADORA => " + computadora.getNumber());
 
 
     }
