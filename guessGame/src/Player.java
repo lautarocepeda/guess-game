@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class Player {
 
     private String number;
-    private Category type;
 
 
 
@@ -39,7 +38,6 @@ public class Player {
             }
         } while (!validData);
     }
-
 
 
     public void computerThinkNumber() {
