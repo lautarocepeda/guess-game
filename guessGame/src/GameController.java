@@ -56,20 +56,17 @@ public class GameController {
 
     public void ordenRegularsDigitsByPermutations() {
 
-        String divinerNumber = this.divider.getNumber();
-
-        int countRegular = this.regular + this.good;
-
-
-        String[] digitos = divinerNumber.split("");
+        String[] digitos = this.divider.getNumber().split("");
         int n = Setting.getMaxDigit();
         int r = Setting.getMaxDigit();
+
 
         System.out.println("start permutations");
         this.permutaciones(digitos, "", n, r);
 
 
-        while (this.good != countRegular) {
+        while (this.regular != 0) {
+
             // the computer use permutations until get the same number of regular digits
             this.divider.setNumber((String) this.permutationDigits.pop());
 
@@ -82,10 +79,6 @@ public class GameController {
         System.out.println("[beneficio] Se evitaron " + this.permutationDigits.size() + " interaciones.");
         // clear the stack
         this.permutationDigits.clear();
-
-
-        // guarda el numero que tiene mas digitos buenos.
-        this.maybeNumber = this.divider.getNumber();
     }
 
 
@@ -104,14 +97,12 @@ public class GameController {
         // Verificar que numeros REGULARES no entren a la blacklist.
         while (this.good != Setting.getMaxDigit()) {
 
-            if (i == Setting.getMaxDigit() - 1) {
-                i = 0;
-            } else {
-                i++;
-            }
-
-
             if (positionsGoods.contains(i)){
+                if (i == Setting.getMaxDigit() - 1) {
+                    i = 0;
+                } else {
+                    i++;
+                }
                 System.out.println("[CONTINUE] POSICION #" + i);
                 continue;
             }
@@ -158,7 +149,7 @@ public class GameController {
 
                 this.good++;
                 System.out.println("[New condition] Nueva posicion correcta encontrada => Posicion " + i);
-
+                System.out.println("Black list: " + digitToReplace);
 
             } else if (this.good == actualGoodDigits + 1) {
 
@@ -167,12 +158,10 @@ public class GameController {
                 System.out.println("[New condition][Encontrado] Digito y posicion correctamente => Posicion " + i);
                 System.out.println("Black list: " + replace);
 
-            } else if (this.good == actualGoodDigits && this.regular == actualRegularDigits) {
+            } else if (this.regular == actualRegularDigits - 1) {
 
-                this.blackListDigits.add(digitToReplace);
-                this.blackListDigits.add(replace);
-                System.out.println("[New condition] Sin cambios => Blacklist: " + digitToReplace + ", " + replace);
-                System.out.println("Black list: " + replace + ", " + digitToReplace);
+                this.divider.setNumber(this.divider.getNumber().replace(replace, digitToReplace)); // revertimos en cambio.
+                System.out.println("[New condition] Se reemplazo un numero regular => Numero " + digitToReplace);
 
             }
 
@@ -183,9 +172,15 @@ public class GameController {
 
             }
 
-
             if (this.regular > 1) {
                 this.ordenRegularsDigitsByPermutations();
+            }
+
+
+            if (i == Setting.getMaxDigit() - 1) {
+                i = 0;
+            } else {
+                i++;
             }
         }
 
