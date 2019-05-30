@@ -60,7 +60,7 @@ public class GameController {
         int r = Setting.getMaxDigit();
 
 
-        System.out.println("start permutations");
+        //System.out.println("start permutations");
         this.permutaciones(digitos, "", n, r);
 
 
@@ -69,12 +69,12 @@ public class GameController {
             // the computer use permutations until get the same number of regular digits
             this.divider.setNumber((String) this.permutationDigits.pop());
 
-            System.out.println("PERMUTACIONES -> " + this.divider.getNumber());
+            //System.out.println("PERMUTACIONES -> " + this.divider.getNumber());
 
             this.calculateDigits();
         }
 
-        System.out.println("[beneficio] Se evitaron " + this.permutationDigits.size() + " interaciones.");
+        //System.out.println("[beneficio] Se evitaron " + this.permutationDigits.size() + " interaciones.");
 
         // clear the stack
         this.permutationDigits.clear();
@@ -101,7 +101,7 @@ public class GameController {
                 } else {
                     i++;
                 }
-                System.out.println("[CONTINUE] POSICION #" + i);
+                //System.out.println("[CONTINUE] POSICION #" + i);
                 continue;
             }
 
@@ -111,9 +111,9 @@ public class GameController {
             actualRegularDigits = this.regular;
 
 
-            System.out.println("Diviner Number => " + this.divider.getNumber());
+            //System.out.println("Diviner Number => " + this.divider.getNumber());
             digitToReplace = this.divider.getNumber().charAt(i);
-            System.out.println("[TESTING] DIGITO A SER REEMPLAZADO => " + digitToReplace);
+            //System.out.println("[TESTING] DIGITO A SER REEMPLAZADO => " + digitToReplace);
 
 
             do {
@@ -127,9 +127,9 @@ public class GameController {
             } while (this.divider.getNumber().contains(String.valueOf(replace)) || blackListDigits.contains(replace));
 
 
-            System.out.println("[TESTING] DIGITO DE REEMPLAZO => " + replace);
+            //System.out.println("[TESTING] DIGITO DE REEMPLAZO => " + replace);
             this.divider.setNumber(this.divider.getNumber().replace(digitToReplace, replace));
-            System.out.println("[TESTING] NUMERO NUEVO A SER PROBADO => " + this.divider.getNumber());
+            //System.out.println("[TESTING] NUMERO NUEVO A SER PROBADO => " + this.divider.getNumber());
 
 
             this.calculateDigits();
@@ -143,27 +143,27 @@ public class GameController {
                 this.divider.setNumber(this.divider.getNumber().replace(replace, digitToReplace)); // revertimos en cambio.
 
                 this.good++;
-                System.out.println("[New condition] Nueva posicion correcta encontrada => Posicion " + i);
-                System.out.println("Black list: " + digitToReplace);
+                //System.out.println("[New condition] Nueva posicion correcta encontrada => Posicion " + i);
+                //System.out.println("Black list: " + digitToReplace);
 
             } else if (this.good == actualGoodDigits + 1) {
 
                 this.positionsGoods.add(i);
                 this.blackListDigits.add(replace);
-                System.out.println("[New condition][Encontrado] Digito y posicion correctamente => Posicion " + i);
-                System.out.println("Black list: " + replace);
+                //System.out.println("[New condition][Encontrado] Digito y posicion correctamente => Posicion " + i);
+                //System.out.println("Black list: " + replace);
 
             } else if (this.regular == actualRegularDigits - 1) {
 
                 this.divider.setNumber(this.divider.getNumber().replace(replace, digitToReplace)); // revertimos en cambio.
-                System.out.println("[New condition] Se reemplazo un numero regular => Numero " + digitToReplace);
+                //System.out.println("[New condition] Se reemplazo un numero regular => Numero " + digitToReplace);
 
             }
 
 
             if (this.regular == actualRegularDigits + 1) {
                 this.regularsDigits.add(replace);
-                System.out.println("[New condition] Nuevo numero regular => Numero " + replace);
+                //System.out.println("[New condition] Nuevo numero regular => Numero " + replace);
 
             }
 
@@ -210,7 +210,7 @@ public class GameController {
 
         this.regular = this.regular - this.good;
 
-        //System.out.println("COMPUTADORA => " + this.divider.getNumber());
+        System.out.println("COMPUTADORA => " + this.divider.getNumber());
         System.out.println("Bien => " + good);
         System.out.println("Regular => " + regular);
     }
