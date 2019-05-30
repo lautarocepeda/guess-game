@@ -14,28 +14,33 @@ Hay dos formas de jugar:
 ### Pensador elige: 1234
 
 **Adivinador** dice: 1893
+
 **Pensador** response:
     
 	Bien => 1
 	Regular => 1
 	
 **Adivinador** dice: 2893
+
 **Pensador** response:
 
 	Bien => 0
 	Regular => 2
 **Adivinador** dice: 1293
+
 **Pensador** dice:
 
 	Bien => 2
 	Regular => 1
 
 **Adivinador** dice: 1284
+
 **Pensador** responde:
 
 	Bien => 2
 	Regular => 1
 **Adivinador** dice: 1234
+
 **Pensador** responde:
 
    	Bien => 4
