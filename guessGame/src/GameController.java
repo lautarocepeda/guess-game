@@ -10,13 +10,8 @@ public class GameController {
     private int regular;
 
 
-    // contain the number with more good digits
-    private String maybeNumber = new String();
-
-
     // save the permutation numbers
     private Stack permutationDigits = new Stack();
-
 
     // digits unnecessary
     ArrayList<Character> blackListDigits = new ArrayList();
@@ -34,11 +29,15 @@ public class GameController {
 
 
 
+    // Contructors
     public GameController(Player thinker, Player divider) {
         this.thinker = thinker;
         this.divider = divider;
     }
 
+
+
+    //Methods
 
     public void permutaciones(String[] digitos, String act, int n, int r) {
         if (n == 0) {
@@ -75,8 +74,8 @@ public class GameController {
             this.calculateDigits();
         }
 
-
         System.out.println("[beneficio] Se evitaron " + this.permutationDigits.size() + " interaciones.");
+
         // clear the stack
         this.permutationDigits.clear();
     }
@@ -94,7 +93,6 @@ public class GameController {
         this.calculateDigits();
 
 
-        // Verificar que numeros REGULARES no entren a la blacklist.
         while (this.good != Setting.getMaxDigit()) {
 
             if (positionsGoods.contains(i)){
@@ -108,7 +106,7 @@ public class GameController {
             }
 
 
-            // actualiza las variables para la nueva iteracion
+            // refresh variables to new iteration
             actualGoodDigits = this.good;
             actualRegularDigits = this.regular;
 
@@ -130,10 +128,7 @@ public class GameController {
 
 
             System.out.println("[TESTING] DIGITO DE REEMPLAZO => " + replace);
-
-
             this.divider.setNumber(this.divider.getNumber().replace(digitToReplace, replace));
-
             System.out.println("[TESTING] NUMERO NUEVO A SER PROBADO => " + this.divider.getNumber());
 
 
@@ -172,6 +167,7 @@ public class GameController {
 
             }
 
+
             if (this.regular > 1) {
                 this.ordenRegularsDigitsByPermutations();
             }
@@ -184,18 +180,18 @@ public class GameController {
             }
         }
 
+
         // end game
         if (this.good == Setting.getMaxDigit()) {
             System.out.println("End Game.");
             return true;
         }
 
-
         return false;
     }
 
 
-    private void calculateDigits() {
+    public void calculateDigits() {
 
         this.good = 0;
         this.regular = 0;
@@ -220,7 +216,6 @@ public class GameController {
     }
 
 
-
     public boolean humanVsComputer() {
 
         // calculate the good and regular digits
@@ -232,5 +227,16 @@ public class GameController {
 
         return false;
     }
+
+
+    public int getGood() {
+        return good;
+    }
+
+    public int getRegular() {
+        return regular;
+    }
+
+
 
 }

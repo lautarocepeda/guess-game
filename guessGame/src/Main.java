@@ -5,7 +5,6 @@ public class Main {
     public static GameController gameController;
 
 
-
     public static void main(String[] args) {
 
         // set max digit to guess number. (1-9)
@@ -17,13 +16,6 @@ public class Main {
         startThinkerHuman();
 
 
-    }
-
-
-
-    // useless
-    public static int factorial(int n) {
-        return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
     }
 
 
@@ -71,10 +63,7 @@ public class Main {
 
         System.out.println("PENSADOR => " + lautaro.getNumber());
         System.out.println("COMPUTADORA => " + computadora.getNumber());
-
-
     }
-
 
 
 }
